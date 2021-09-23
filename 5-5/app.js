@@ -1,21 +1,17 @@
 let fs = require('fs');
 let input = fs.readFileSync('./input.txt').toString().split('\n');
 
-let result = [];
+let realScore = input[1].split(' ');
 
-  for(let i = 0; i < input.length; i++) {
-    let num = Number(input[i]);
-    let remainder = num % 42;
-    result.push(remainder);
+const maxValue = Math.max(...realScore);
+let changedScore = [];
+
+
+for(let i = 0; i < input[0]; i++) {
+  if(realScore[i] <= maxValue) {
+    changedScore.push(realScore[i]/maxValue*100);
   }
+}
 
-let count = {};
-result.forEach((x) => {
-  if(count[x]) {
-    count[x] = count[x] + 1;
-  }else {
-    count[x] = 0 + 1;
-  }
-});
-
-console.log(count);
+const reducer = (x, y) => x + y;
+console.log(changedScore.reduce(reducer)/input[0]);
