@@ -1,31 +1,26 @@
-const fs = require("fs");
-const [n, ...arr] = (
-  process.platform === "linux"
-    ? fs.readFileSync("/dev/stdin").toString()
-    : `2
-6 12 10
-30 50 72`
-)
-  .trim()
-  .split("\n");
+//const fs = require('fs');
+//const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n').map(num => Number(num));const T = input.shift();
 
-let nArrNumber = Number(n);
-let newArr = arr.map((e) => e.split(" "));
-let nAnswer = "";
+const input = [2, 1, 3, 2, 3];
+const T = input.shift();
 
-for (let i = 0; i < nArrNumber; i++) {
-  let H = newArr[i][0],
-    N = newArr[i][2];
+for (let i = 0; i < T; i++) {
+  const a = input.shift();
+  const b = input.shift();
+  const apartment = [];
 
-  let answerH = N % H;
-  if (answerH === 0) {
-    answerH = H;
+  for (let i = 0; i <= a; i++) {
+    apartment.push([1]);
+    for(let j = 1; j < b; j++) {
+      if (i === 0) {
+        apartment[i].push(j + 1);
+      } else {
+        apartment[i].push(apartment[i][j - 1] + apartment[i - 1][j]);
+      }
+    }
   }
 
-  let answerW = Math.ceil(N / H);
-  answerW < 10 ? (answerW = String(0) + answerW) : answerW;
-
-  nAnswer += `${answerH}${answerW}` + "\n";
+  const floor = a;
+  const room = b - 1;
+  console.log(apartment[floor][room]);
 }
-
-console.log(nAnswer);
