@@ -1,7 +1,3 @@
-const fs = require('fs');
-const input = fs.readFileSync('./input.txt').toString().split('\n');
-const N = Number(input.shift());
-
 // 소수 판별 함수
 function isPrime(n) {
   if (n === 2 || n === 3) {
@@ -21,11 +17,10 @@ function isPrime(n) {
   return true;
 }
 
-const numbers = input[0].split(' ').map(n => Number(n));
 let count = 0;
-for (let i = 0; i < N; i++) {
-  if (isPrime(numbers[i])) {
-    count += 1;
+for (let i = 60; i <= 100 && i >= 60; i++) {
+  if (isPrime(i)) {
+    count = count + i;
   }
 }
 
