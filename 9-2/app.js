@@ -1,3 +1,6 @@
+const fs = require('fs');
+const input = fs.readFileSync('./input.txt').toString().split('\n');
+
 // 소수 판별 함수
 function isPrime(n) {
   if (n === 2 || n === 3) {
@@ -17,11 +20,18 @@ function isPrime(n) {
   return true;
 }
 
-let count = 0;
-for (let i = 60; i <= 100 && i >= 60; i++) {
+let count = [];
+let sum = 0;
+for (let i = 60; i <= input[1] && i >= input[0]; i++) {
   if (isPrime(i)) {
-    count = count + i;
+    count.push(i);
+    sum = sum + i;
   }
 }
 
-console.log(count);
+if(sum === 0){
+  console.log(-1);
+}else {
+  console.log(sum);
+  console.log(count[0]);
+}
