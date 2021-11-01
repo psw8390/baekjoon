@@ -1,31 +1,32 @@
 const fs = require('fs');
-const input = fs.readFileSync('./input.txt').toString().trim().split('\n');
+const input = fs.readFileSync('./input.txt').toString().trim().split(' ').map(num => parseInt(num));
+
+
+const MAX = 1000000;
+let M = input.shift();
+let N = input.shift();
+let isPrimeArr = new Array(N + 1);
+let square = 0;
+
+isPrimeArr.fill(true);
+isPrimeArr[0] = isPrimeArr[1] = false;
+console.log(isPrimeArr);
  
-const primeNumArr = [];
-let primeNumSum = 0;
- 
-function primeNumber(n) {
-  if (n < 2) {
-    return;
-}
- 
-for (let i = 2; i < n; i++) {
-  if (n % i === 0) {
-    return;
+for (let i = 2; i < N + 1; i++) {
+  if (isPrimeArr[i]) {
+  if (parseInt(Math.pow(i, 2)) > MAX) {
+    break;
+  } else {
+   for (square = parseInt(Math.pow(i, 2)); square < N + 1;) {
+    isPrimeArr[square] = false;
+    square += i;
+      }
     }
   }
-  primeNumArr.push(n);
-  primeNumSum += n;
 }
  
-const begin = parseInt(input.shift());
-const end = parseInt(input.shift());
- 
-for (let i = begin; i <= end; i++) {
-  primeNumber(i);
-}
-
-
-for(let i = 0; i < primeNumArr.length; i++){
-  console.log(primeNumArr[i]);
+for (let i = M; i < N + 1; i++) {
+  if (isPrimeArr[i]) {
+    console.log(i);
+  }
 }
