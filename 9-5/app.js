@@ -1,31 +1,35 @@
-const fs = require('fs');
-const input = fs.readFileSync('./input.txt').toString().trim().split('\n');
+let fs = require('fs');
+let inputs = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+inputs.pop();
 
-let primeNumArr = [];
+for (let i = 0; i < inputs.length; i++) {
+    let input = Number(inputs[i]);
 
-function primeNumber(n) {
-  if (n < 2) {
-    return;
-}
- 
-for (let i = 2; i < n; i++) {
-  if (n % i === 0) {
-    return;
+    let input2 = input * 2;
+
+    let isPrimeNumber = Array(input2 + 1).fill(true);
+    isPrimeNumber[0] = isPrimeNumber[1] = false;
+
+    function PrimeNumber() {
+        for(let i = 2; i <= Math.ceil(Math.sqrt(input2)); i++) {
+            if(isPrimeNumber[i]) {
+                let m = 2;
+                while(i * m <= input2) {
+                    isPrimeNumber[i * m] = false;
+                    m++;
+                }
+            }
+        } 
+        let results = [];
+    
+        for(let i = input + 1; i <= input2; i++) {
+            if(isPrimeNumber[i]) {
+                results.push(i);
+            }
+        }
+        console.log(results.length);
+    
     }
-  }
-  primeNumArr.push(n);
-}
-
-for(let j = 0; j < input.length; j++) { 
-  let begin = Number(input[j]) + 1;
-  let end = 2 * input[j];
-  for (let i = begin; i <= end; i++) {
-    primeNumber(i);
-  }
-  if(primeNumArr.length == 0) {
-    return;
-  } else {
-    console.log(primeNumArr.length);
-  }
-  primeNumArr = [];
+    
+    PrimeNumber();
 }
