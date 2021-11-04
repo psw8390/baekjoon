@@ -1,35 +1,62 @@
-let fs = require('fs');
-let inputs = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
-inputs.pop();
+const fs = require('fs');
+const stdin = (process.platform === 'linux'
+        ? fs.readFileSync('/dev/stdin').toString()
+        : `3
+        8
+        10
+        16`
+).split('\n');
 
-for (let i = 0; i < inputs.length; i++) {
-    let input = Number(inputs[i]);
+const input = (() => {
+    let line = 0;
+    return () => stdin[line++];
+})();
 
-    let input2 = input * 2;
 
-    let isPrimeNumber = Array(input2 + 1).fill(true);
-    isPrimeNumber[0] = isPrimeNumber[1] = false;
+let a = [];
+let primes = [];
+let inVal = parseInt(input()); //8, 10 , 16
+let objVal = [];
+let goldbach = [];
+let maxNUm = 10001;
 
-    function PrimeNumber() {
-        for(let i = 2; i <= Math.ceil(Math.sqrt(input2)); i++) {
-            if(isPrimeNumber[i]) {
-                let m = 2;
-                while(i * m <= input2) {
-                    isPrimeNumber[i * m] = false;
-                    m++;
-                }
-            }
-        } 
-        let results = [];
-    
-        for(let i = input + 1; i <= input2; i++) {
-            if(isPrimeNumber[i]) {
-                results.push(i);
-            }
+for(let i=0; i<inVal; i++){
+    objVal.push(parseInt(input()));
+    goldbach.push([]);
+}
+
+for(let i=0; i<=maxNUm; i++){
+    a.push(i);
+}
+
+function findPrime(){
+    for(let i=2; i<=maxNUm; i++){
+        if(a[i] == 0) continue;
+        for(let j= i+i; j<=maxNUm; j += i){
+            a[j] = 0;
         }
-        console.log(results.length);
-    
     }
-    
-    PrimeNumber();
+    for(let i=2; i<=maxNUm; i++){
+        if(a[i] != 0) primes.push(i);
+    }
+}
+
+findPrime();
+//console.log(primes.length); // = 1229
+for(let i=0; i<inVal; i++){
+    let tmp = [];
+    for(let j=0; j<1229; j++){
+        if(objVal[i] <= (primes[j] + 1)) break;
+        if(a[objVal[i] - primes[j]] != 0){
+            tmp.push(primes[j]);
+        }
+    }
+    if(tmp.length % 2 == 0){
+        let ans = tmp.length / 2;
+        console.log(tmp[ans-1] + " " + tmp[ans]);
+    }
+    else{
+        let ans = Math.floor(tmp.length / 2);
+        console.log(tmp[ans] + " " + tmp[ans]);
+    }
 }
