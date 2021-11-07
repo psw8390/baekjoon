@@ -1,61 +1,17 @@
-const fs = require('fs');
-const stdin = (process.platform === 'linux'
-        ? fs.readFileSync('/dev/stdin').toString()
-        : `3
-        8
-        10
-        16`
-).split('\n');
-
-const input = (() => {
-    let line = 0;
-    return () => stdin[line++];
-})();
-
-let a = [];
-let primes = [];
-let inVal = parseInt(input()); 
-let objVal = [];
-let goldbach = [];
-let maxNUm = 10001;
-
-for(let i=0; i<inVal; i++){
-    objVal.push(parseInt(input()));
-    goldbach.push([]);
-}
-
-for(let i=0; i<=maxNUm; i++){
-    a.push(i);
-}
-
-function findPrime(){
-    for(let i=2; i<=maxNUm; i++){
-        if(a[i] == 0) continue;
-        for(let j= i+i; j<=maxNUm; j += i){
-            a[j] = 0;
-        }
-    }
-    for(let i=2; i<=maxNUm; i++){
-        if(a[i] != 0) primes.push(i);
-    }
-}
-
-findPrime();
-//console.log(primes.length); // = 1229
-for(let i=0; i<inVal; i++){
-    let tmp = [];
-    for(let j=0; j<1229; j++){
-        if(objVal[i] <= (primes[j] + 1)) break;
-        if(a[objVal[i] - primes[j]] != 0){
-            tmp.push(primes[j]);
-        }
-    }
-    if(tmp.length % 2 == 0){
-        let ans = tmp.length / 2;
-        console.log(tmp[ans-1] + " " + tmp[ans]);
-    }
-    else{
-        let ans = Math.floor(tmp.length / 2);
-        console.log(tmp[ans] + " " + tmp[ans]);
-    }
-}
+var fs = require('fs');
+var input = fs.readFileSync('/dev/stdin').toString().split(' ');
+ 
+var [x, y, w, h] = input.map(el => parseInt(el));
+ 
+ 
+//w, h 는 x, y보다 크기 떄문에 항상 양수
+const xDiff = w-x
+const yDiff = h-y
+ 
+// 네개의 변수 중 최소값이 문제에서 하는 최소 거리이다.
+const arr = [xDiff, yDiff, x, y]
+// js의 기본 sort는 ascii 문자를 기준으로 정렬하기 때문에 반드시 비교함수를 넣어줘야한다.
+arr.sort((a, b) => {
+  return a - b
+});
+console.log(arr[0])
