@@ -1,8 +1,7 @@
 var fs = require('fs');
-var input = fs.readFileSync('/dev/stdin').toString().split(' ');
+var input = fs.readFileSync('./input.txt').toString().split(' ');
  
 var [x, y, w, h] = input.map(el => parseInt(el));
- 
  
 //w, h 는 x, y보다 크기 떄문에 항상 양수
 const xDiff = w-x
