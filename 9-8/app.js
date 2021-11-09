@@ -1,33 +1,17 @@
-var fs = require('fs');
-var input = fs.readFileSync('./input.txt').toString().split('\n');
-
-let x = [];
-let y = [];
-
-for (let i = 0; i <input.length; i++) {
-  input[i].split(' ');
-  x.push(input[i][0]);
-  y.push(input[i][2]);
+let fs = require('fs');
+let input = fs.readFileSync('/dev/stdin').toString().split("\n");
+let arrayX = [];
+let arrayY = [];
+let x;
+let y;
+for(let i = 0; i < 3; i++){
+    arrayX.push(Number(input[i].split(" ")[0]));
+    arrayY.push(Number(input[i].split(" ")[1]));
 }
+arrayX = arrayX.sort();
+arrayy = arrayY.sort();
 
-let resultX = [];
-let resultY = [];
+x = arrayX[1] === arrayX[0] ? arrayX[2] : arrayX[0];
+y = arrayY[1] === arrayY[0] ? arrayY[2] : arrayY[0];
 
-
-if(x[0] === x[1]) {
-  resultX.push(x[2]);
-} else if(x[0] === x[2]) {
-  resultX.push(x[1]);
-} else if(x[1] === x[2]) {
-  resultX.push(x[0]);
-}
-
-if(y[0] === y[1]) {
-  resultY.push(y[2]);
-} else if(y[0] === y[2]) {
-  resultY.push(y[1]);
-} else if(y[1] === y[2]) {
-  resultY.push(y[0]);
-}
-
-console.log(`${resultX[0]} ${resultY[0]}`);
+console.log(`${x} ${y}`);
