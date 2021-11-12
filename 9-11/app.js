@@ -23,7 +23,7 @@ for(let i = 0; i < T; i++) {
   const rSum = (r1 + r2) * (r1 + r2);
   const rSub = (r2 - r1) * (r2 - r1);
   const d = dx * dx + dy * dy;
-  
+
   // 1. 원이 두 점에서 만나는 경우 (두 점)(r2 - r1 < d < r1 + r2)
   if (d < rSum && d > rSub) {
   console.log(2);
