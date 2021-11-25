@@ -1,5 +1,5 @@
 let fs = require('fs');
-let input = fs.readFileSync("/dev/stdin").toString();
+let input = fs.readFileSync("./input.txt").toString();
 
 let N = Number(input); // 원판의 갯수
 let count = 0;
