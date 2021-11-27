@@ -1,11 +1,7 @@
-// Blackjack
- 
-// For submit
- 
-// const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
- 
-// For local test
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+
+
 const input = ['5 21', '5 6 7 8 9'];
 const NM = input
 .shift()
