@@ -19,4 +19,4 @@ if (constructorArr.length) {
   console.log(Math.min.apply(null, constructorArr));
 } else {
   console.log(0);
-}cd
+}
