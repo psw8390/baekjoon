@@ -1,6 +1,31 @@
-const fs = require('fs');
-const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
-
+// const fs = require('fs');
+// const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+ 
+const input = [
+'8 8',
+'WBWBWBWB',
+'BWBWBWBW',
+'WBWBWBWB',
+'BWBBBWBW',
+'WBWBWBWB',
+'BWBWBWBW',
+'WBWBWBWB',
+'BWBWBWBW'
+];
+ 
+const input = [
+  '10 13',
+  'BBBBBBBBWBWBW',
+  'BBBBBBBBBWBWB',
+  'BBBBBBBBWBWBW',
+  'BBBBBBBBBWBWB',
+  'BBBBBBBBWBWBW',
+  'BBBBBBBBBWBWB',
+  'BBBBBBBBWBWBW',
+  'BBBBBBBBBWBWB',
+  'WWWWWWWWWWBWB',
+  'WWWWWWWWWWBWB'
+  ];
    
   const NM = input
   .shift()
