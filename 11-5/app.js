@@ -1,5 +1,5 @@
 const fs = require('fs');
-const input = parseInt(fs.readFileSync('/dev/stdin').toString().trim());
+let input = parseInt(fs.readFileSync('./input.txt').toString().trim());
 
 let theNumberAtTheEnd = 665;
 
